@@ -3,7 +3,7 @@ A simple and easy to use view controller enabling you to enter a phone number wi
 
 Screenshots
 --------------
-<img src="img src="resources/screenshots/1.png"  height="400" /><img src="resources/screenshots/2.png"  height="400" />
+<img src="resources/screenshots/1.png"  height="400" /> <img src="resources/screenshots/2.png"  height="400" />
 
 Installation
 --------------
