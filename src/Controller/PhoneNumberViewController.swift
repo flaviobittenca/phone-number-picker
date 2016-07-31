@@ -10,13 +10,13 @@
 import UIKit
 
 public protocol PhoneNumberViewControllerDelegate {
-    func phoneNumberViewController(phoneNumberViewController: PhoneNumberViewController, didEnterPhoneNumber phoneNumber: String)
-    func phoneNumberViewControllerDidCancel(phoneNumberViewController: PhoneNumberViewController)
+    func phoneNumberViewController(_ phoneNumberViewController: PhoneNumberViewController, didEnterPhoneNumber phoneNumber: String)
+    func phoneNumberViewControllerDidCancel(_ phoneNumberViewController: PhoneNumberViewController)
 }
 
 public final class PhoneNumberViewController: UIViewController, CountriesViewControllerDelegate {
     public class func standardController() -> PhoneNumberViewController {
-        return UIStoryboard(name: "PhoneNumberPicker", bundle: nil).instantiateViewControllerWithIdentifier("PhoneNumber") as! PhoneNumberViewController
+        return UIStoryboard(name: "PhoneNumberPicker", bundle: nil).instantiateViewController(withIdentifier: "PhoneNumber") as! PhoneNumberViewController
     }
     
     @IBOutlet weak public var countryButton: UIButton!
@@ -58,6 +58,18 @@ public final class PhoneNumberViewController: UIViewController, CountriesViewCon
     override public func viewDidLoad() {
         super.viewDidLoad()
         
+        countryTextField.layer.borderWidth = 0.2
+        countryTextField.layer.cornerRadius = 5
+        countryTextField.layer.borderColor = UIColor.gray().cgColor
+        countryTextField.rightView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 20))
+        countryTextField.rightViewMode = UITextFieldViewMode.always
+        
+        phoneNumberTextField.layer.borderWidth = 0.2
+        phoneNumberTextField.layer.cornerRadius = 5
+        phoneNumberTextField.layer.borderColor = UIColor.gray().cgColor
+        phoneNumberTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 20))
+        phoneNumberTextField.leftViewMode = UITextFieldViewMode.always
+        
         setupCancelButton()
         setupDoneButton()
         
@@ -66,47 +78,49 @@ public final class PhoneNumberViewController: UIViewController, CountriesViewCon
         phoneNumberTextField.becomeFirstResponder()
     }
     
-    @IBAction private func changeCountry(sender: UIButton) {
+    @IBAction private func changeCountry(_ sender: UIButton) {
         let countriesViewController = CountriesViewController.standardController()
         countriesViewController.delegate = self
         countriesViewController.cancelBarButtonItemHidden = true
 
         countriesViewController.selectedCountry = country
-        countriesViewController.majorCountryLocaleIdentifiers = ["GB", "US", "IT", "DE", "RU", "BR", "IN"]
+        //countriesViewController.majorCountryLocaleIdentifiers = ["GB", "US", "IT", "DE", "RU", "BR", "IN"]
         
         navigationController?.pushViewController(countriesViewController, animated: true)
     }
     
-    public func countriesViewControllerDidCancel(countriesViewController: CountriesViewController) { }
+    public func countriesViewControllerDidCancel(_ countriesViewController: CountriesViewController) { }
     
-    public func countriesViewController(countriesViewController: CountriesViewController, didSelectCountry country: Country) {
-        navigationController?.popViewControllerAnimated(true)
+    public func countriesViewController(_ countriesViewController: CountriesViewController, didSelectCountry country: Country) {
+        navigationController?.popViewController(animated: true)
         self.country = country
         updateCountry()
     }
     
-    @IBAction private func textFieldDidChangeText(sender: UITextField) {
+    @IBAction private func textFieldDidChangeText(_ sender: UITextField) {
         if let countryText = sender.text where sender == countryTextField {
             country = Countries.countryFromPhoneExtension(countryText)
         }
-        updateTitle()
+        //updateTitle()
     }
+    
+    
     
     private func updateCountry() {
         countryTextField.text = country.phoneExtension
         updateCountryTextField()
-        updateTitle()
+        //updateTitle()
     }
     
     private func updateTitle() {
         updateCountryTextField()
         if countryTextField.text == "+" {
-            countryButton.setTitle("Select From List", forState: .Normal)
+            countryButton.setTitle("Select From List", for: UIControlState())
         } else {
-            countryButton.setTitle(country.name, forState: .Normal)
+            countryButton.setTitle(country.name, for: UIControlState())
         }
         
-        var title = "Your Phone Number"
+        var title = "Phone Verification"
         if let newTitle = phoneNumber  {
             title = newTitle
         }
@@ -124,7 +138,7 @@ public final class PhoneNumberViewController: UIViewController, CountriesViewCon
         }
     }
     
-    @IBAction private func done(sender: UIBarButtonItem) {
+    @IBAction private func done(_ sender: UIBarButtonItem) {
         if !countryIsValid || !phoneNumberIsValid {
             return
         }
@@ -133,12 +147,12 @@ public final class PhoneNumberViewController: UIViewController, CountriesViewCon
         }
     }
     
-    @IBAction private func cancel(sender: UIBarButtonItem) {
+    @IBAction private func cancel(_ sender: UIBarButtonItem) {
         delegate?.phoneNumberViewControllerDidCancel(self)
     }
     
-    @IBAction private func tappedBackground(sender: UITapGestureRecognizer) {
-        view.endEditing(true)
+    @IBAction private func tappedBackground(_ sender: UITapGestureRecognizer) {
+        //view.endEditing(true)
     }
     
     //MARK: Validation
@@ -160,8 +174,12 @@ public final class PhoneNumberViewController: UIViewController, CountriesViewCon
         let validCountry = countryIsValid
         let validPhoneNumber = phoneNumberIsValid
         
-        doneBarButtonItem.enabled = validCountry && validPhoneNumber
+        doneBarButtonItem.isEnabled = validCountry && validPhoneNumber
     }
+    
+    
+
+    
 }
 
 private extension String {

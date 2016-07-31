@@ -250,13 +250,18 @@
 				TargetAttributes = {
 					C261B72A1CA9B6D8007F6A49 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = Y759RK5K7D;
+						DevelopmentTeamName = "NEWSOUND INTERACTIVE LTD";
+						LastSwiftMigration = 0800;
 					};
 					C261B73E1CA9B6D8007F6A49 = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 						TestTargetID = C261B72A1CA9B6D8007F6A49;
 					};
 					C261B7491CA9B6D8007F6A49 = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 						TestTargetID = C261B72A1CA9B6D8007F6A49;
 					};
 				};
@@ -468,6 +473,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = farah.lucas.PhoneNumberPickerExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -479,6 +485,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = farah.lucas.PhoneNumberPickerExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -490,6 +497,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = farah.lucas.PhoneNumberPickerExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PhoneNumberPickerExample.app/PhoneNumberPickerExample";
 			};
 			name = Debug;
@@ -502,6 +510,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = farah.lucas.PhoneNumberPickerExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PhoneNumberPickerExample.app/PhoneNumberPickerExample";
 			};
 			name = Release;
@@ -513,6 +522,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = farah.lucas.PhoneNumberPickerExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = PhoneNumberPickerExample;
 			};
 			name = Debug;
@@ -524,6 +534,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = farah.lucas.PhoneNumberPickerExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = PhoneNumberPickerExample;
 			};
 			name = Release;

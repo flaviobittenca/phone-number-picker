@@ -13,18 +13,18 @@ private class PNPMenuDisabledTextField: UITextField {
     @IBInspectable private var canPositionCaretAtStart: Bool = true
     @IBInspectable private var editingRectDeltaY: CGFloat = 0
     
-    private override func canPerformAction(action: Selector, withSender sender: AnyObject?) -> Bool {
+    private override func canPerformAction(_ action: Selector, withSender sender: AnyObject?) -> Bool {
         return menuEnabled
     }
     
-    private override func caretRectForPosition(position: UITextPosition) -> CGRect {
+    private override func caretRect(for position: UITextPosition) -> CGRect {
         if position == beginningOfDocument && !canPositionCaretAtStart {
-            return super.caretRectForPosition(positionFromPosition(position, offset: 1)!)
+            return super.caretRect(for: self.position(from: position, offset: 1)!)
         }
-        return super.caretRectForPosition(position)
+        return super.caretRect(for: position)
     }
     
-    private override func editingRectForBounds(bounds: CGRect) -> CGRect {
+    private override func editingRect(forBounds bounds: CGRect) -> CGRect {
         return bounds.insetBy(dx: 0, dy: editingRectDeltaY)
     }
 }

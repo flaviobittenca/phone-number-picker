@@ -9,32 +9,38 @@
 import UIKit
 
 class ViewController: UIViewController,PhoneNumberViewControllerDelegate {
+    @IBOutlet var but: UIButton!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
     
-    let but = UIButton(frame: CGRect(x: 100, y: 100, width: 200, height: 100))
-    but.setTitle("Phone Number", forState: .Normal)
-    but.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
-    but.addTarget(self, action: #selector(ViewController.present), forControlEvents: .TouchUpInside)
-    view.addSubview(but)
+    //let but = UIButton(frame: CGRect(x: 100, y: 100, width: 200, height: 100))
+    but.setTitle("Phone Number", for: UIControlState())
+    but.setTitleColor(UIColor.black(), for: UIControlState())
+    //but.addTarget(self, action: Selector("present:"), for: .touchUpInside)
+    //view.addSubview(but)
   }
+    @IBAction func myAction(_ sender: AnyObject) {
+        present()
+    }
+
   
   func present()
   {
     let phoneNumberViewController = PhoneNumberViewController.standardController()
     phoneNumberViewController.delegate = self
+    
     navigationController?.pushViewController(phoneNumberViewController, animated: true)
   }
   
-  func phoneNumberViewControllerDidCancel(phoneNumberViewController: PhoneNumberViewController) {
-    self.navigationController?.popViewControllerAnimated(true)
+  func phoneNumberViewControllerDidCancel(_ phoneNumberViewController: PhoneNumberViewController) {
+    self.navigationController?.popViewController(animated: true)
     print("canceled")
   }
   
-  func phoneNumberViewController(phoneNumberViewController: PhoneNumberViewController, didEnterPhoneNumber phoneNumber: String) {
-    self.navigationController?.popViewControllerAnimated(true)
+  func phoneNumberViewController(_ phoneNumberViewController: PhoneNumberViewController, didEnterPhoneNumber phoneNumber: String) {
+    self.navigationController?.popViewController(animated: true)
     print("phone number: \(phoneNumber)")
   }
   
