@@ -3,8 +3,7 @@ A simple and easy to use view controller enabling you to enter a phone number wi
 
 Screenshots
 --------------
-![alt text](https://github.com/hughbe/PhoneNumberPicker/blob/master/resources/screenshots/1.png "Screenshot 1")
-![alt text](https://github.com/hughbe/PhoneNumberPicker/blob/master/resources/screenshots/2.png "Screenshot 2")
+<img src="img src="resources/screenshots/1.png"  height="400" /><img src="resources/screenshots/2.png"  height="400" />
 
 Installation
 --------------
@@ -17,18 +16,31 @@ Setup
 class ViewController: UIViewController,PhoneNumberViewControllerDelegate {
 
 
-func presentPhoneNumberViewController { //Your function. Can be any name
-   // 2. Create the PhoneNumberViewController
-   let phoneNumberViewController = PhoneNumberViewController.standardController()
 
-   // 3. Set the delegate
-   phoneNumberViewController.delegate = self
+    //present
+    func present(){
+        
+        //create the controller
+        let phoneNumberViewController = PhoneNumberViewController.standardController()
+        
+        //set the delegate
+        phoneNumberViewController.delegate = self
+        
+        //push
+        navigationController?.pushViewController(phoneNumberViewController, animated: true)
+    }
 
-   // 4. Present the PhoneNumberViewController (Navigation Controller)
-   navigationController?.pushViewController(phoneNumberViewController, animated: true)
+    //Delegate Methods
+    func phoneNumberViewControllerDidCancel(_ phoneNumberViewController: PhoneNumberViewController) {
+        self.navigationController?.popViewController(animated: true)
+        print("canceled")
+    }
+
+    func phoneNumberViewController(_ phoneNumberViewController: PhoneNumberViewController, didEnterPhoneNumber phoneNumber: String) {
+        self.navigationController?.popViewController(animated: true)
+        print("phone number: \(phoneNumber)")
+    }
+
 }
 ```
 
-Country Selector
--------------
-You can manually present a `CountriesViewController` to present a list of all countries and their phone extensions to the user

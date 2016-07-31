@@ -101,7 +101,7 @@ public final class PhoneNumberViewController: UIViewController, CountriesViewCon
         if let countryText = sender.text where sender == countryTextField {
             country = Countries.countryFromPhoneExtension(countryText)
         }
-        //updateTitle()
+        updateTitle()
     }
     
     
@@ -109,7 +109,7 @@ public final class PhoneNumberViewController: UIViewController, CountriesViewCon
     private func updateCountry() {
         countryTextField.text = country.phoneExtension
         updateCountryTextField()
-        //updateTitle()
+        updateTitle()
     }
     
     private func updateTitle() {
@@ -120,11 +120,11 @@ public final class PhoneNumberViewController: UIViewController, CountriesViewCon
             countryButton.setTitle(country.name, for: UIControlState())
         }
         
-        var title = "Phone Verification"
-        if let newTitle = phoneNumber  {
-            title = newTitle
-        }
-        navigationItem.title = title
+//        var title = "Phone Verification"
+//        if let newTitle = phoneNumber  {
+//            title = newTitle
+//        }
+//        navigationItem.title = title
         
         validate()
     }
