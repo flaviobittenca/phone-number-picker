@@ -11,7 +11,7 @@ import UIKit
 class PNPHighlightButton: UIButton {
     private var normalBackgroundColor: UIColor!
     
-    @IBInspectable var highlightedBackgroundColor: UIColor = UIColor.lightGray()
+    @IBInspectable var highlightedBackgroundColor: UIColor = UIColor.lightGray
     
     override func awakeFromNib() {
         super.awakeFromNib()

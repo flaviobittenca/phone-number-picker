@@ -46,7 +46,7 @@ public final class PhoneNumberViewController: UIViewController, CountriesViewCon
     public var delegate: PhoneNumberViewControllerDelegate?
     
     public var phoneNumber: String? {
-        if let countryText = countryTextField.text, phoneNumberText = phoneNumberTextField.text where !countryText.isEmpty && !phoneNumberText.isEmpty {
+        if let countryText = countryTextField.text, let phoneNumberText = phoneNumberTextField.text , !countryText.isEmpty && !phoneNumberText.isEmpty {
             return countryText + phoneNumberText
         }
         return nil
@@ -60,13 +60,13 @@ public final class PhoneNumberViewController: UIViewController, CountriesViewCon
         
         countryTextField.layer.borderWidth = 0.2
         countryTextField.layer.cornerRadius = 5
-        countryTextField.layer.borderColor = UIColor.gray().cgColor
+        countryTextField.layer.borderColor = UIColor.gray.cgColor
         countryTextField.rightView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 20))
         countryTextField.rightViewMode = UITextFieldViewMode.always
         
         phoneNumberTextField.layer.borderWidth = 0.2
         phoneNumberTextField.layer.cornerRadius = 5
-        phoneNumberTextField.layer.borderColor = UIColor.gray().cgColor
+        phoneNumberTextField.layer.borderColor = UIColor.gray.cgColor
         phoneNumberTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 20))
         phoneNumberTextField.leftViewMode = UITextFieldViewMode.always
         
@@ -98,7 +98,7 @@ public final class PhoneNumberViewController: UIViewController, CountriesViewCon
     }
     
     @IBAction private func textFieldDidChangeText(_ sender: UITextField) {
-        if let countryText = sender.text where sender == countryTextField {
+        if let countryText = sender.text , sender == countryTextField {
             country = Countries.countryFromPhoneExtension(countryText)
         }
         updateTitle()
@@ -133,7 +133,7 @@ public final class PhoneNumberViewController: UIViewController, CountriesViewCon
         if countryTextField.text == "+" {
             countryTextField.text = ""
         }
-        else if let countryText = countryTextField.text where !countryText.hasPrefix("+") && !countryText.isEmpty {
+        else if let countryText = countryTextField.text , !countryText.hasPrefix("+") && !countryText.isEmpty {
             countryTextField.text = "+" + countryText
         }
     }

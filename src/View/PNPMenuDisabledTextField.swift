@@ -13,7 +13,7 @@ private class PNPMenuDisabledTextField: UITextField {
     @IBInspectable private var canPositionCaretAtStart: Bool = true
     @IBInspectable private var editingRectDeltaY: CGFloat = 0
     
-    private override func canPerformAction(_ action: Selector, withSender sender: AnyObject?) -> Bool {
+    private func canPerformAction(_ action: Selector, withSender sender: AnyObject?) -> Bool {
         return menuEnabled
     }
     
