@@ -62,11 +62,11 @@ public final class CountriesViewController: UITableViewController, UISearchContr
         definesPresentationContext = true
     }
     
-    public func willPresent(_ searchController: UISearchController) {
+    @objc(willPresentSearchController:) public func willPresentSearchController(_ searchController: UISearchController) {
         tableView.reloadSectionIndexTitles()
     }
     
-    public func willDismiss(_ searchController: UISearchController) {
+    @objc(willDismissSearchController:) public func willDismissSearchController(_ searchController: UISearchController) {
         tableView.reloadSectionIndexTitles()
     }
     
@@ -81,7 +81,7 @@ public final class CountriesViewController: UITableViewController, UISearchContr
             filteredCountries = unfilteredCountries
         } else {
             let allCountries: [Country] = Countries.countries.filter { $0.name.range(of: text) != nil }
-            filteredCountries = partionedArray(allCountries, usingSelector: Selector("name"))
+            filteredCountries = partionedArray(allCountries, usingSelector: #selector(getter: MTLFunction.name))
             filteredCountries.insert([], at: 0) //Empty section for our favorites
         }
         tableView.reloadData()
@@ -95,10 +95,10 @@ public final class CountriesViewController: UITableViewController, UISearchContr
     //MARK: Viewing Countries
     private func setupCountries() {
         
-        tableView.sectionIndexTrackingBackgroundColor = UIColor.clear()
-        tableView.sectionIndexBackgroundColor = UIColor.clear()
+        tableView.sectionIndexTrackingBackgroundColor = UIColor.clear
+        tableView.sectionIndexBackgroundColor = UIColor.clear
         
-        unfilteredCountries = partionedArray(Countries.countries, usingSelector: Selector("name"))
+        unfilteredCountries = partionedArray(Countries.countries, usingSelector: #selector(getter: MTLFunction.name))
         unfilteredCountries.insert(Countries.countriesFromCountryCodes(majorCountryLocaleIdentifiers), at: 0)
         tableView.reloadData()
         
@@ -131,7 +131,7 @@ public final class CountriesViewController: UITableViewController, UISearchContr
         
         cell.accessoryType = .none
         
-        if let selectedCountry = selectedCountry where country == selectedCountry {
+        if let selectedCountry = selectedCountry , country == selectedCountry {
             cell.accessoryType = .checkmark
         }
         

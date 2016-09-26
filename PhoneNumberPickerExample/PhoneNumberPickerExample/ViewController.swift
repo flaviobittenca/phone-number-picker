@@ -17,7 +17,7 @@ class ViewController: UIViewController,PhoneNumberViewControllerDelegate {
     
     //let but = UIButton(frame: CGRect(x: 100, y: 100, width: 200, height: 100))
     but.setTitle("Phone Number", for: UIControlState())
-    but.setTitleColor(UIColor.black(), for: UIControlState())
+    but.setTitleColor(UIColor.black, for: UIControlState())
     //but.addTarget(self, action: Selector("present:"), for: .touchUpInside)
     //view.addSubview(but)
   }

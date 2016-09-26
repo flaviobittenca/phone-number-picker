@@ -16,10 +16,17 @@ public class Country: NSObject {
     public static var emptyCountry: Country { return Country(countryCode: "", phoneExtension: "", isMain: true) }
     
     public static var currentCountry: Country {
-        if let countryCode = Locale.current().object(forKey: Locale.Key.countryCode) as? String {
+        
+        
+        //NSLocale.value(forKey: NSLocale.Key.countryCode)
+        
+        if let countryCode = Locale.current.regionCode/*NSLocale.value(forKey: NSLocale.Key.countryCode.rawValue) as? String*/ {
             print(countryCode)
             return Countries.countryFromCountryCode(countryCode)
         }
+        
+        
+        
         return Country.emptyCountry
     }
     
@@ -34,6 +41,10 @@ public class Country: NSObject {
     }
     
     @objc public var name: String {
-        return Locale.current().displayName(forKey: Locale.Key.countryCode, value: countryCode) ?? "Invalid country code"
+        
+        //Locale.current.regionCode
+        
+        return NSLocale(localeIdentifier: "en_US").displayName(forKey: NSLocale.Key.countryCode, value: countryCode) ?? "Invalid country code"
+        //return Locale.current.displayName(forKey: Locale.Key.countryCode, value: countryCode) ?? "Invalid country code"
     }
 }
