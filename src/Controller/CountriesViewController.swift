@@ -175,7 +175,7 @@ private func partionedArray<T: AnyObject>(_ array: [T], usingSelector selector: 
     
     var unsortedSections: [[T]] = Array(repeating: [], count: numberOfSectionTitles)
     for object in array {
-        let sectionIndex = collation.section(for: object, collationStrinngSelector: selector)
+        let sectionIndex = collation.section(for: object, collationStringSelector: selector)
         unsortedSections[sectionIndex].append(object)
     }
     
