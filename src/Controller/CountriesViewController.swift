@@ -81,7 +81,7 @@ public final class CountriesViewController: UITableViewController, UISearchContr
             filteredCountries = unfilteredCountries
         } else {
             let allCountries: [Country] = Countries.countries.filter { $0.name.range(of: text) != nil }
-            filteredCountries = partionedArray(allCountries, usingSelector: #selector(getter: MTLFunction.name))
+            filteredCountries = partionedArray(allCountries, usingSelector: #selector(getter: Country.name))
             filteredCountries.insert([], at: 0) //Empty section for our favorites
         }
         tableView.reloadData()
@@ -98,7 +98,7 @@ public final class CountriesViewController: UITableViewController, UISearchContr
         tableView.sectionIndexTrackingBackgroundColor = UIColor.clear
         tableView.sectionIndexBackgroundColor = UIColor.clear
         
-        unfilteredCountries = partionedArray(Countries.countries, usingSelector: #selector(getter: MTLFunction.name))
+        unfilteredCountries = partionedArray(Countries.countries, usingSelector: #selector(getter: Country.name))
         unfilteredCountries.insert(Countries.countriesFromCountryCodes(majorCountryLocaleIdentifiers), at: 0)
         tableView.reloadData()
         
