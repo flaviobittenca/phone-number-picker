@@ -163,6 +163,7 @@ public final class CountriesViewController: UITableViewController, UISearchContr
     }
     
     @IBAction private func cancel(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
         delegate?.countriesViewControllerDidCancel(self)
     }
     
