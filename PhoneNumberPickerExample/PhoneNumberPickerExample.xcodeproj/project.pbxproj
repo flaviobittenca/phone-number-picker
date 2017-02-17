@@ -19,9 +19,6 @@
 		C261B77E1CA9BD00007F6A49 /* Countries.swift in Sources */ = {isa = PBXBuildFile; fileRef = C261B7751CA9BD00007F6A49 /* Countries.swift */; };
 		C261B77F1CA9BD00007F6A49 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = C261B7761CA9BD00007F6A49 /* Country.swift */; };
 		C261B7801CA9BD00007F6A49 /* PhoneNumberPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C261B7781CA9BD00007F6A49 /* PhoneNumberPicker.storyboard */; };
-		C261B7811CA9BD00007F6A49 /* PNPHighlightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C261B7791CA9BD00007F6A49 /* PNPHighlightButton.swift */; };
-		C261B7821CA9BD00007F6A49 /* PNPMenuDisabledTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C261B77A1CA9BD00007F6A49 /* PNPMenuDisabledTextField.swift */; };
-		C261B7831CA9BD00007F6A49 /* PNPSideBordered.swift in Sources */ = {isa = PBXBuildFile; fileRef = C261B77B1CA9BD00007F6A49 /* PNPSideBordered.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,9 +57,6 @@
 		C261B7751CA9BD00007F6A49 /* Countries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Countries.swift; sourceTree = "<group>"; };
 		C261B7761CA9BD00007F6A49 /* Country.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		C261B7781CA9BD00007F6A49 /* PhoneNumberPicker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PhoneNumberPicker.storyboard; sourceTree = "<group>"; };
-		C261B7791CA9BD00007F6A49 /* PNPHighlightButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PNPHighlightButton.swift; sourceTree = "<group>"; };
-		C261B77A1CA9BD00007F6A49 /* PNPMenuDisabledTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PNPMenuDisabledTextField.swift; sourceTree = "<group>"; };
-		C261B77B1CA9BD00007F6A49 /* PNPSideBordered.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PNPSideBordered.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,9 +169,6 @@
 			isa = PBXGroup;
 			children = (
 				C261B7781CA9BD00007F6A49 /* PhoneNumberPicker.storyboard */,
-				C261B7791CA9BD00007F6A49 /* PNPHighlightButton.swift */,
-				C261B77A1CA9BD00007F6A49 /* PNPMenuDisabledTextField.swift */,
-				C261B77B1CA9BD00007F6A49 /* PNPSideBordered.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -322,11 +313,8 @@
 				C261B77D1CA9BD00007F6A49 /* PhoneNumberViewController.swift in Sources */,
 				C261B7311CA9B6D8007F6A49 /* ViewController.swift in Sources */,
 				C261B72F1CA9B6D8007F6A49 /* AppDelegate.swift in Sources */,
-				C261B7811CA9BD00007F6A49 /* PNPHighlightButton.swift in Sources */,
 				C261B77E1CA9BD00007F6A49 /* Countries.swift in Sources */,
-				C261B7821CA9BD00007F6A49 /* PNPMenuDisabledTextField.swift in Sources */,
 				C261B77F1CA9BD00007F6A49 /* Country.swift in Sources */,
-				C261B7831CA9BD00007F6A49 /* PNPSideBordered.swift in Sources */,
 				C261B77C1CA9BD00007F6A49 /* CountriesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
