@@ -17,14 +17,14 @@ private class PNPMenuDisabledTextField: UITextField {
         return menuEnabled
     }
     
-    private override func caretRect(for position: UITextPosition) -> CGRect {
+    fileprivate override func caretRect(for position: UITextPosition) -> CGRect {
         if position == beginningOfDocument && !canPositionCaretAtStart {
             return super.caretRect(for: self.position(from: position, offset: 1)!)
         }
         return super.caretRect(for: position)
     }
     
-    private override func editingRect(forBounds bounds: CGRect) -> CGRect {
+    fileprivate override func editingRect(forBounds bounds: CGRect) -> CGRect {
         return bounds.insetBy(dx: 0, dy: editingRectDeltaY)
     }
 }

@@ -17,7 +17,7 @@ private class PNPSideBorderedView: UIView  {
     @IBInspectable private var showsLeftBorder: Bool = false
     @IBInspectable private var showsRightBorder: Bool = false
     
-    private override func awakeFromNib() {
+    fileprivate override func awakeFromNib() {
         super.awakeFromNib()
         
         if (showsTopBorder || showsBottomBorder || showsLeftBorder || showsRightBorder) && borderWidth == 0 {
@@ -49,7 +49,7 @@ private class PhoneNumberPickerSideBorderedButton: UIButton  {
     @IBInspectable private var showsLeftBorder: Bool = false
     @IBInspectable private var showsRightBorder: Bool = false
     
-    private override func awakeFromNib() {
+    fileprivate override func awakeFromNib() {
         super.awakeFromNib()
         
         if (showsTopBorder || showsBottomBorder || showsLeftBorder || showsRightBorder) && borderWidth == 0 {
