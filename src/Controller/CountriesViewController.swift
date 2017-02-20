@@ -13,7 +13,7 @@ public protocol CountriesViewControllerDelegate {
     func countriesViewController(_ countriesViewController: CountriesViewController, didSelectCountry country: Country)
 }
 
-public final class CountriesViewController: UITableViewController, UISearchControllerDelegate, UISearchResultsUpdating, UISearchBarDelegate {
+public final class CountriesViewController: UITableViewController {
     public class func standardController() -> CountriesViewController {
         return UIStoryboard(name: "PhoneNumberPicker", bundle: Bundle(for: self)).instantiateViewController(withIdentifier: "Countries") as! CountriesViewController
     }
@@ -30,7 +30,7 @@ public final class CountriesViewController: UITableViewController, UISearchContr
         }
     }
     
-    private var searchController = UISearchController(searchResultsController: nil)
+    fileprivate var searchController = UISearchController(searchResultsController: nil)
     
     public var unfilteredCountries: [[Country]]! { didSet { filteredCountries = unfilteredCountries } }
     public var filteredCountries: [[Country]]!
@@ -63,6 +63,36 @@ public final class CountriesViewController: UITableViewController, UISearchContr
         definesPresentationContext = true
     }
     
+    //MARK: Viewing Countries
+    private func setupCountries() {
+        
+        tableView.sectionIndexTrackingBackgroundColor = UIColor.clear
+        tableView.sectionIndexBackgroundColor = UIColor.clear
+        
+        unfilteredCountries = partionedArray(Countries.countries, usingSelector: #selector(getter: Country.name))
+        unfilteredCountries.insert(Countries.countriesFromCountryCodes(majorCountryLocaleIdentifiers), at: 0)
+        tableView.reloadData()
+        
+        if let selectedCountry = selectedCountry {
+            for (index, countries) in unfilteredCountries.enumerated() {
+                if let countryIndex = countries.index(of: selectedCountry) {
+                    let indexPath = IndexPath(row: countryIndex, section: index)
+                    tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
+                    break
+                }
+            }
+        }
+    }
+    
+    @IBAction private func cancel(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
+        delegate?.countriesViewControllerDidCancel(self)
+    }
+    
+}
+
+extension CountriesViewController: UISearchControllerDelegate, UISearchResultsUpdating, UISearchBarDelegate {
+    
     @objc(willPresentSearchController:) public func willPresentSearchController(_ searchController: UISearchController) {
         tableView.reloadSectionIndexTitles()
     }
@@ -93,26 +123,9 @@ public final class CountriesViewController: UITableViewController, UISearchContr
         tableView.reloadData()
     }
     
-    //MARK: Viewing Countries
-    private func setupCountries() {
-        
-        tableView.sectionIndexTrackingBackgroundColor = UIColor.clear
-        tableView.sectionIndexBackgroundColor = UIColor.clear
-        
-        unfilteredCountries = partionedArray(Countries.countries, usingSelector: #selector(getter: Country.name))
-        unfilteredCountries.insert(Countries.countriesFromCountryCodes(majorCountryLocaleIdentifiers), at: 0)
-        tableView.reloadData()
-        
-        if let selectedCountry = selectedCountry {
-            for (index, countries) in unfilteredCountries.enumerated() {
-                if let countryIndex = countries.index(of: selectedCountry) {
-                    let indexPath = IndexPath(row: countryIndex, section: index)
-                    tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
-                    break
-                }
-            }
-        }
-    }
+}
+
+extension CountriesViewController {
     
     override public func numberOfSections(in tableView: UITableView) -> Int {
         return filteredCountries.count
@@ -164,16 +177,10 @@ public final class CountriesViewController: UITableViewController, UISearchContr
         delegate?.countriesViewController(self, didSelectCountry: filteredCountries[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row])
     }
     
-    @IBAction private func cancel(_ sender: UIBarButtonItem) {
-        self.dismiss(animated: true, completion: nil)
-        delegate?.countriesViewControllerDidCancel(self)
-    }
-    
-    
 }
 
 private func partionedArray<T: AnyObject>(_ array: [T], usingSelector selector: Selector) -> [[T]] {
-    let collation = UILocalizedIndexedCollation.current() 
+    let collation = UILocalizedIndexedCollation.current()
     let numberOfSectionTitles = collation.sectionTitles.count
     
     var unsortedSections: [[T]] = Array(repeating: [], count: numberOfSectionTitles)
