@@ -42,9 +42,6 @@ public class Country: NSObject {
     
     @objc public var name: String {
         
-        //Locale.current.regionCode
-        
-        return NSLocale(localeIdentifier: "en_US").displayName(forKey: NSLocale.Key.countryCode, value: countryCode) ?? "Invalid country code"
-        //return Locale.current.displayName(forKey: Locale.Key.countryCode, value: countryCode) ?? "Invalid country code"
+        return (Locale.current as NSLocale).displayName(forKey: NSLocale.Key.countryCode, value: countryCode) ?? "Invalid country code"
     }
 }
