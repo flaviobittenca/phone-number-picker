@@ -57,6 +57,7 @@ public final class CountriesViewController: UITableViewController, UISearchContr
         searchController.searchBar.delegate = self
         searchController.searchBar.sizeToFit()
         
+        extendedLayoutIncludesOpaqueBars = true
         tableView.tableHeaderView = searchController.searchBar
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         definesPresentationContext = true
