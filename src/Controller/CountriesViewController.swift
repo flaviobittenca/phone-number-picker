@@ -31,6 +31,7 @@ public final class CountriesViewController: UITableViewController {
     }
     
     fileprivate var searchController = UISearchController(searchResultsController: nil)
+    fileprivate var searchBarEditing: Bool = false
     
     public var unfilteredCountries: [[Country]]! { didSet { filteredCountries = unfilteredCountries } }
     public var filteredCountries: [[Country]]!
@@ -95,6 +96,7 @@ extension CountriesViewController: UISearchControllerDelegate, UISearchResultsUp
     
     @objc(willPresentSearchController:) public func willPresentSearchController(_ searchController: UISearchController) {
         tableView.reloadSectionIndexTitles()
+        searchBarEditing = true
     }
     
     @objc(willDismissSearchController:) public func willDismissSearchController(_ searchController: UISearchController) {
@@ -121,6 +123,7 @@ extension CountriesViewController: UISearchControllerDelegate, UISearchResultsUp
     public func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         filteredCountries = unfilteredCountries
         tableView.reloadData()
+        searchBarEditing = false
     }
     
 }
@@ -173,7 +176,14 @@ extension CountriesViewController {
     
     public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        self.dismiss(animated: true, completion: nil)
+        if searchBarEditing {
+            self.dismiss(animated: true, completion: {
+                self.dismiss(animated: true, completion: nil)
+            })
+        } else {
+            self.dismiss(animated: true, completion: nil)
+        }
+        
         delegate?.countriesViewController(self, didSelectCountry: filteredCountries[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row])
     }
     
